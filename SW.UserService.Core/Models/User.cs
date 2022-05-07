@@ -3,7 +3,7 @@
     using System;
     using SW.UserService.Core.Enums;
 
-    class User
+    public class User
     {
         public string Id { get; set; }
         

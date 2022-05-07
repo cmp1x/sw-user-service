@@ -1,6 +1,6 @@
 ﻿namespace SW.UserService.Core.Enums
 {
-    enum UserRole
+    public enum UserRole
     {
         ADMIN = 1,
         MODERATOR = 2,
