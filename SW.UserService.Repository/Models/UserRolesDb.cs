@@ -1,13 +1,13 @@
 ﻿namespace SW.UserService.Repository.Models
 {
+    using SW.UserService.Repository.Enums;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class UserRolesDb
     {
         [Key]
         public int UserRoleId { get; set; }
 
-        public string UserRoleName {get;set;}
+        public UserRole UserRoleName { get; set; }
     }
 }
