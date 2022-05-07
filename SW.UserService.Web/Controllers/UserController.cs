@@ -1,28 +1,29 @@
 ﻿namespace SW.UserService.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Collections.Generic;
+    using SW.UserService.Repository;
+    using SW.UserService.Repository.Models;
     using System.Linq;
-    using System.Threading.Tasks;
-    using SW.UserService.Core.Models;
 
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private IEnumerable<User> ExampleUsers;
+        private UserDbContext db;
 
-        public UserController()
+        public UserController(UserDbContext db)
         {
-            this.ExampleUsers = new List<User>()
-            {
-                new User()
+            this.db = db;
+            this.db.Database.EnsureDeleted();
+            this.db.Database.EnsureCreated();
+            this.db.SaveChanges();
+            this.db.Users.Add(
+                new UserDb()
                 {
-                    Id="22",
-                    Username="Nat"
-                }
-            };
+                    Id = "22",
+                    Username = "Nat"
+                });
+            this.db.SaveChanges();
         }
 
         [HttpGet]
@@ -34,7 +35,8 @@
         [HttpGet("Id")]
         public IActionResult GetId(string id)
         {
-            var user = this.ExampleUsers.FirstOrDefault<User>(u => u.Id == id);
+            var user = this.db.Users.ToList().FirstOrDefault<UserDb>(
+                usr => usr.Id == id);
 
             if (!(user is null))
             {
