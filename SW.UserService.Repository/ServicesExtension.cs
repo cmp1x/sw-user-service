@@ -12,6 +12,5 @@
 
             services.AddTransient<IUserRepository, UserRepository>();
         }
-
     }
 }
