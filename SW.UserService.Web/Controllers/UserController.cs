@@ -7,23 +7,23 @@
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private IUserRepository db;
+        private IUserRepository userRepository;
 
-        public UserController(IUserRepository db)
+        public UserController(IUserRepository userRepository)
         {
-            this.db = db;
+            this.userRepository = userRepository;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(this.db.GetAll());
+            return Ok(this.userRepository.GetAll());
         }
 
         [HttpGet("Id")]
         public IActionResult GetId(string id)
         {
-            var user = this.db.Get(id);
+            var user = this.userRepository.Get(id);
 
             if (!(user is null))
             {
