@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SW.UserService.Repository;
+using SW.UserService.Repository.Repositories;
 
 namespace SW.UserService.Web
 {
@@ -27,6 +28,8 @@ namespace SW.UserService.Web
             services.AddDbContext<UserDbContext>(
                 options => options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
