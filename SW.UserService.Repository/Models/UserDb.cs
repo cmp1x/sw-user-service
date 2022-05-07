@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class UserDb
     {
@@ -21,7 +22,10 @@
 
         public string EncryptedPassword { get; set; }
 
-        public ICollection<UserRolesDb> Role { get; set; }
+        [ForeignKey("UserRolesDb")]
+        public int RoleId { get; set; }
+
+        public UserRolesDb UserRoles { get; set; }
 
         public string ConfirmationToken { get; set; }
 

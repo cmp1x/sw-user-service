@@ -13,24 +13,25 @@
             {
                 using (var db = scope.ServiceProvider.GetService<UserDbContext>())
                 {
-                    db.Database.EnsureDeleted();
-                    db.Database.EnsureCreated();
+                    //using (var transaction = db.Database.BeginTransaction())
 
-                    //Role
-                    var admin = new UserRolesDb() { UserRoleId = 1, UserRoleName = "ADMIN" };
-                    var moderator = new UserRolesDb() { UserRoleId = 1, UserRoleName = "MODERATOR" };
-                    var teacher = new UserRolesDb() { UserRoleId = 1, UserRoleName = "TEACHER" };
-                    var student = new UserRolesDb() { UserRoleId = 1, UserRoleName = "STUDENT" };
+                    //{
+                        db.Database.EnsureDeleted();
+                        db.Database.EnsureCreated();
 
-                    db.UserRoles.Add(admin);
-                    db.UserRoles.Add(moderator);
-                    db.UserRoles.Add(teacher);
-                    db.UserRoles.Add(student);
+                        //Role
+                       // db.UserRoles.Add(new UserRolesDb() { UserRoleId = 1, UserRoleName = "ADMIN" });
+                       // db.UserRoles.Add(new UserRolesDb() { UserRoleId = 2, UserRoleName = "MODERATOR" });
+                       // db.UserRoles.Add(new UserRolesDb() { UserRoleId = 3, UserRoleName = "TEACHER" });
+                       // db.UserRoles.Add(new UserRolesDb() { UserRoleId = 4, UserRoleName = "STUDENT" });
+                       // db.SaveChanges();
 
-                    //Users
-                    db.Users.Add(new UserDb() { Id = "1", Username = "Nat", Role = new List<UserRolesDb>() { admin } });
-                    db.Users.Add(new UserDb() { Id = "2", Username = "Ivan", Role = new List<UserRolesDb>() { student } });
-                    db.SaveChanges();                }
+                        //Users
+                        db.Users.Add(new UserDb() { Id = "1", Username = "Nat", RoleId = 1 });
+                        db.Users.Add(new UserDb() { Id = "2", Username = "Ivan", RoleId = 4 });
+                        db.SaveChanges();
+                    //}
+                }
             }
         }
     }
