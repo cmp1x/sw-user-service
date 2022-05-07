@@ -25,11 +25,7 @@ namespace SW.UserService.Web
 
             services.AddSwaggerGen();
 
-            services.AddDbContext<UserDbContext>(
-                options => options.UseSqlServer(
-                    this.Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddRepositoryServices(this.Configuration.GetConnectionString("DefaultConnection"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
