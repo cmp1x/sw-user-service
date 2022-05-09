@@ -1,8 +1,10 @@
 ﻿namespace SW.UserService.Repository.Models
 {
+    using SW.UserService.Repository.Enums;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class UserDb
     {
@@ -21,7 +23,8 @@
 
         public string EncryptedPassword { get; set; }
 
-        public ICollection<UserRolesDb> Role { get; set; }
+        [ForeignKey("UserRolesDb")]
+        public UserRole UserRole { get; set; }
 
         public string ConfirmationToken { get; set; }
 

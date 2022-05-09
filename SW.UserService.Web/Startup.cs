@@ -35,6 +35,8 @@ namespace SW.UserService.Web
             {
                 app.UseDeveloperExceptionPage();
 
+                app.DbInitialize();
+
                 app.UseSwagger();
 
                 app.UseSwaggerUI(c =>

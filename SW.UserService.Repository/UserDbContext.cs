@@ -11,6 +11,7 @@
         }
 
         public DbSet<UserDb> Users { get; set; }
+
         public DbSet<UserRolesDb> UserRoles { get; set; }
     }
 }

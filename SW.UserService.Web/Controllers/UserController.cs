@@ -29,7 +29,7 @@
             {
                 return Ok(user);
             }
-            return NotFound("the ID not defined");
+            return NotFound("the ID is not defined");
         }
     }
 }
